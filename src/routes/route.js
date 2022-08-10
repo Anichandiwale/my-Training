@@ -38,7 +38,7 @@ let players =
 
 router.post('/players', function (req, res) {
 
-    let play= req.body.element
+    let play = req.body.element
 
        for(let i = 0; i < players.length; i++){
 
