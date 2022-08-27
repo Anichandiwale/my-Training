@@ -1,11 +1,14 @@
+const mid2 = function (req, res, next) {
+    let data = req.headers.isfreeappuser
+    if (!data) {
 
-const checkmid= function ( req, res, next) {
-    let isfreeApp = req.header("isfreeAppUser")
-    if(isfreeApp){
-        req.body.isfreeAppUser=isfreeApp
+        res.send("isFreeApUser is not present in the headers")
+    }
+    else {
+        
+        req.isFreeAppuser = Boolean(req.headers.isfreeappuser)
         next()
-    }else{
-        res.send("The request is missing Header")
     }
 }
-module.exports.checkmid= checkmid
+
+module.exports.mid2 = mid2

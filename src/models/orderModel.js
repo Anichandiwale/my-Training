@@ -6,17 +6,17 @@ const orderSchema = new mongoose.Schema( {
 
     userId: {
         type: ObjectId,
-        ref: "User"
+        ref: "anil"
     }, 
      productId:{
         type: ObjectId,
         ref: "Product"
     },
     amount: Number,
-	isFreeAppUser: Boolean, 
-	date: { type: Date, default: Date()}
+	isFreeAppUser: {type:Boolean, default:false},
+	date: String
 
 }, { timestamps: true });
 
 
-module.exports = mongoose.model('order', orderSchema) //users
+module.exports = mongoose.model('order', orderSchema) 
