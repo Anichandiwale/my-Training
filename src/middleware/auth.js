@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
 const authorise = function(req, res, next) {
-    let token = req.headers["x-Auth-token"]||req.headers["x-auth-token"];  //case sensitive
-    //   if (!token) token = req.headers["x-auth-token"];
+    let token = req.headers["x-Auth-token"]||req.headers["x-auth-token"];  
+    
     
       //If no token is present in the request header return error. This means the user is not logged in.
-      if (!token) return res.send({ status: false, msg: "token must be present" });
+      if (!token) return res.status(403).send({ status: false, msg: "token must be present" });
     
       //try & catch is used for error handling
       try{
@@ -14,15 +14,15 @@ const authorise = function(req, res, next) {
       }
     
     catch(error){
-     //console.log(error)
-        return res.send({msg:error.message})
+     
+        return res.status(401).send({msg:error.message})
       }
       try{
         let decoded =  jwt.verify(token,'functionup-thorium')
         let userToModify = req.params.userId
         let userLoggedIn= decoded.userId
         if(userToModify!=userLoggedIn){
-          return res.send({msg: " sorry! you are not a authorized person"})
+          return res.status(401).send({msg: " sorry! you are not a authorized person"})
         }else{userId}
       }
     
